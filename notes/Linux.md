@@ -154,16 +154,16 @@ Linux 发行版是 Linux 内核及各种应用软件的集成版本。
 
 ## VIM 三个模式
 
-<div align="center"> <img src="../pics//5942debd-fc00-477a-b390-7c5692cc8070.jpg" width="400"/> </div><br>
+- 一般指令模式（Command mode）：进入 VIM 的默认模式，可以用于移动游标查看内容；
+- 编辑模式（Insert mode）：按下 "i" 等按键之后进入，可以对文本进行编辑；
+- 指令列模式（Bottom-line mode）：按下 ":" 按键之后进入，用于保存退出等操作。
 
-- 一般指令模式：进入 VIM 的默认模式，可以用于移动游标查看内容；
-- 编辑模式：按下 "i" 等按键之后进入，可以对文本进行编辑；
-- 指令列模式：按下 ":" 按键之后进入，用于保存退出等操作。
+<div align="center"> <img src="../pics//5942debd-fc00-477a-b390-7c5692cc8070.jpg" width="400"/> </div><br>
 
 在指令列模式下，有以下命令用于离开或者保存文件。
 
 | 命令 | 作用 |
-| -- | -- |
+| :--: | -- |
 | :w | 写入磁盘|
 | :w! | 当文件为只读时，强制写入磁盘。到底能不能写入，与用户对该文件的权限有关 |
 | :q | 离开 |
@@ -469,7 +469,7 @@ find 可以使用文件的属性和权限进行搜索。
 # find filename [option]
 ```
 
-**（一）与时间有关的选项** 
+（一）与时间有关的选项
 
 ```html
 -mtime  n ：列出在 n 天前的那一天修改过内容的文件
@@ -482,7 +482,7 @@ find 可以使用文件的属性和权限进行搜索。
 
 <div align="center"> <img src="../pics//658fc5e7-79c0-4247-9445-d69bf194c539.png"/> </div><br>
 
-**（二）与文件拥有者和所属群组有关的选项** 
+（二）与文件拥有者和所属群组有关的选项
 
 ```html
 -uid n
@@ -493,7 +493,7 @@ find 可以使用文件的属性和权限进行搜索。
 -nogroup：搜索所属群组不存在于 /etc/group 的文件
 ```
 
-**（三）与文件权限和名称有关的选项** 
+（三）与文件权限和名称有关的选项
 
 ```html
 -name filename
@@ -561,7 +561,7 @@ inode 具体包含以下信息：
 
 删除任意一个条目，文件还是存在，只要引用数量不为 0。
 
-有以下限制：不能跨越 File System；不能对目录进行链接。
+有以下限制：不能跨越 File System、不能对目录进行链接。
 
 ```html
 # ln /etc/crontab .
@@ -636,7 +636,7 @@ $ bzip2 [-cdkzv#] filename
 
 提供比 bzip2 更佳的压缩比。
 
-可以看到，gzip、bzip2、xz 的压缩比不断优化。不过要注意，压缩比越高，压缩的时间也越长。
+可以看到，gzip、bzip2、xz 的压缩比不断优化。不过要注意的是，压缩比越高，压缩的时间也越长。
 
 查看命令：xzcat、xzmore、xzless、xzgrep。
 
@@ -932,7 +932,7 @@ $ grep -n 'the' regular_express.txt
 18:google is the best tools for search keyword
 ```
 
-因为 { 与 } 的符号在 shell 是有特殊意义的，因此必须要使用转义字符进行转义。
+因为 { 和 } 在 shell 是有特殊意义的，因此必须要使用转义字符进行转义。
 
 ```html
 $ grep -n 'go\{2,5\}g' regular_express.txt
@@ -1026,7 +1026,7 @@ daemon 2
 
 示例三：查看特定的进程
 
-```html
+```
 # ps aux | grep threadx
 ```
 
@@ -1060,15 +1060,16 @@ daemon 2
 
 ## 进程状态
 
+<div align="center"> <img src="../pics//76a49594323247f21c9b3a69945445ee.png"/> </div><br>
+
+
 | 状态 | 说明 |
 | :---: | --- |
 | R | running or runnable (on run queue) |
-| D |  uninterruptible sleep (usually IO) |
+| D | uninterruptible sleep (usually IO) |
 | S | interruptible sleep (waiting for an event to complete) |
 | Z | defunct/zombie, terminated but not reaped by its parent |
 | T | stopped, either by a job control signal or because it is being traced|
-
-<div align="center"> <img src="../pics//76a49594323247f21c9b3a69945445ee.png"/> </div><br>
 
 ## SIGCHILD
 
@@ -1118,7 +1119,7 @@ I/O Multiplexing 又被称为 Event Driven I/O，它可以让单个进程具有�
 
 同步异步是获知 I/O 完成的方式，同步需要时刻关心 I/O 是否已经完成，异步无需主动关心，在 I/O 完成时它会收到通知。
 
-<div align="center"> <img src="../pics//00eda100-dba1-4ec2-9140-5fe5f3855951.jpg"/> </div><br>
+<div align="center"> <img src="../pics//54cb3f21-485b-4159-8bf5-dcde1c4d4c36.png"/> </div><br>
 
 ### 1. 同步-阻塞
 
@@ -1130,7 +1131,7 @@ I/O Multiplexing 又被称为 Event Driven I/O，它可以让单个进程具有�
 
 ### 2. 同步-非阻塞
 
-非阻塞意味着用户程序在执行系统调用后还可以执行，内核并不是马上执行完 I/O，而是以一个错误码来告知用户程序 I/O 还未完成。为了获得 I/O 完成事件，用户程序必须调用多次系统调用去询问内核，甚至是忙等，也就是在一个循环里面一直询问并等待。
+非阻塞意味着用户程序在执行系统调用后还可以继续执行，内核并不是马上执行完 I/O，而是以一个错误码来告知用户程序 I/O 还未完成。为了获得 I/O 完成事件，用户程序必须调用多次系统调用去询问内核，甚至是忙等，也就是在一个循环里面一直询问并等待。
 
 由于 CPU 要处理更多的用户程序的询问，因此这种模型的效率是比较低的。
 
@@ -1144,7 +1145,7 @@ I/O Multiplexing 又被称为 Event Driven I/O，它可以让单个进程具有�
 
 ### 4. 异步-非阻塞
 
-该模式下，I/O 操作会立即返回，之后可以处理其它操作，并且在 I/O 完成时会收到一个通知，此时会中断正在处理的操作，然后完成 I/O 事务。
+该模式下，I/O 操作会立即返回，之后可以处理其它操作，并且在 I/O 完成时会收到一个通知，此时会中断正在处理的操作，然后继续的操作。
 
 <div align="center"> <img src="../pics//b4b29aa9-dd2c-467b-b75f-ca6541cb25b5.jpg"/> </div><br>
 
@@ -1321,7 +1322,7 @@ select 和 poll 方式中，进程只有在调用一定的方法后，内核才�
 
 新版本的 epoll_create(int size) 参数 size 不起任何作用，在旧版本的 epoll 中如果描述符的数量大于 size，不保证服务质量。
 
-epoll_ct() 执行一次系统调用，用于向内核注册新的描述符或者是改变某个文件描述符的状态。已注册的描述符在内核中会被维护在一棵红黑树上，通过回调函数内核会将 I/O 准备好的描述符加入到一个链表中管理。
+epoll_ctl() 执行一次系统调用，用于向内核注册新的描述符或者是改变某个文件描述符的状态。已注册的描述符在内核中会被维护在一棵红黑树上，通过回调函数内核会将 I/O 准备好的描述符加入到一个链表中管理。
 
 epoll_wait() 取出在内核中通过链表维护的 I/O 准备好的描述符，将他们从内核复制到程序中，不需要像 select/poll 对注册的所有描述符遍历一遍。
 
