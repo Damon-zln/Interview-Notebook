@@ -202,7 +202,7 @@ GPT 第 1 个区块记录了 MBR，紧接着是 33 个区块记录分区信息�
 
 GPT 没有扩展分区概念，都是主分区，最多可以分 128 个分区。
 
-<div align="center"> <img src="../pics//a5c25452-6fa5-49e7-9322-823077442775.jpg" width="400"/> </div><br>
+<div align="center"> <img src="../pics//GUID_Partition_Table_Scheme.svg.png" width="400"/> </div><br>
 
 ## 开机检测程序
 
@@ -321,7 +321,7 @@ UEFI 相比于 BIOS 来说功能更为全面，也更为安全。
 - /usr (unix software resource)：所有系统默认软件都会安装到这个目录；
 - /var (variable)：存放系统或程序运行过程中的数据文件。
 
-<div align="center"> <img src="../pics//linux-filesystem.png"/> </div><br>
+<div align="center"> <img src="../pics//linux-filesystem.png" width=""/> </div><br>
 
 ## 文件时间
 
@@ -480,7 +480,7 @@ find 可以使用文件的属性和权限进行搜索。
 
 +4、4 和 -4 的指示的时间范围如下：
 
-<div align="center"> <img src="../pics//658fc5e7-79c0-4247-9445-d69bf194c539.png"/> </div><br>
+<div align="center"> <img src="../pics//658fc5e7-79c0-4247-9445-d69bf194c539.png" width=""/> </div><br>
 
 （二）与文件拥有者和所属群组有关的选项
 
@@ -516,13 +516,11 @@ find 可以使用文件的属性和权限进行搜索。
 2. inode：一个文件占用一个 inode，记录文件的属性，同时记录此文件的内容所在的 block 号码；
 3. block：记录文件的内容，文件太大时，会占用多个 block。
 
+<div align="center"> <img src="../pics//ff0c019c-6461-467d-a266-0455341fd4f4.png" width="800"/> </div><br>
+
 当要读取一个文件的内容时，先在 inode 中去查找文件内容所在的所有 block，然后把所有 block 的内容读出来。
 
 磁盘碎片是指一个文件内容所在的 block 过于分散。
-
-Ext2 文件系统使用了上述的文件结构，并在此之上加入了 block 群组的概念，也就是将一个文件系统划分为多个 block 群组，方便管理。
-
-<div align="center"> <img src="../pics//1974a836-aa6b-4fb8-bce1-6eb11969284a.jpg"/> </div><br>
 
 ## inode
 
@@ -530,7 +528,7 @@ Ext2 文件系统支持的 block 大小有 1k、2k 和 4k 三种，不同的 blo
 
 inode 中记录了文件内容所在的 block，但是每个 block 非常小，一个大文件随便都需要几十万的 block。而一个 inode 大小有限，无法直接引用这么多 block。因此引入了间接、双间接、三间接引用。间接引用是指，让 inode 记录的引用 block 块当成 inode 用来记录引用信息。
 
-<div align="center"> <img src="../pics//89091427-7b2b-4923-aff6-44681319a8aa.jpg"/> </div><br>
+<div align="center"> <img src="../pics//1bfa3118-f3cd-4480-a950-cf6d646015db.png" width="600"/> </div><br>
 
 inode 具体包含以下信息：
 
@@ -1060,7 +1058,7 @@ daemon 2
 
 ## 进程状态
 
-<div align="center"> <img src="../pics//76a49594323247f21c9b3a69945445ee.png"/> </div><br>
+<div align="center"> <img src="../pics//76a49594323247f21c9b3a69945445ee.png" width=""/> </div><br>
 
 
 | 状态 | 说明 |
@@ -1078,7 +1076,7 @@ daemon 2
 - 得到 SIGCHLD 信号；
 - 阻塞的 waitpid(2)（或者 wait）调用会返回。
 
-<div align="center"> <img src="../pics//flow.png"/> </div><br>
+<div align="center"> <img src="../pics//flow.png" width=""/> </div><br>
 
 ## 孤儿进程和僵死进程
 
@@ -1119,7 +1117,7 @@ I/O Multiplexing 又被称为 Event Driven I/O，它可以让单个进程具有�
 
 同步异步是获知 I/O 完成的方式，同步需要时刻关心 I/O 是否已经完成，异步无需主动关心，在 I/O 完成时它会收到通知。
 
-<div align="center"> <img src="../pics//54cb3f21-485b-4159-8bf5-dcde1c4d4c36.png"/> </div><br>
+<div align="center"> <img src="../pics//54cb3f21-485b-4159-8bf5-dcde1c4d4c36.png" width=""/> </div><br>
 
 ### 1. 同步-阻塞
 
@@ -1127,7 +1125,7 @@ I/O Multiplexing 又被称为 Event Driven I/O，它可以让单个进程具有�
 
 应该注意到，在阻塞的过程中，其他程序还可以执行，因此阻塞不意味着整个操作系统都被阻塞。因为其他程序还可以执行，因此不消耗 CPU 时间，这种模型的执行效率会比较高。
 
-<div align="center"> <img src="../pics//5e9b10f3-9504-4483-9667-d4770adebf9f.png"/> </div><br>
+<div align="center"> <img src="../pics//5e9b10f3-9504-4483-9667-d4770adebf9f.png" width=""/> </div><br>
 
 ### 2. 同步-非阻塞
 
@@ -1135,23 +1133,23 @@ I/O Multiplexing 又被称为 Event Driven I/O，它可以让单个进程具有�
 
 由于 CPU 要处理更多的用户程序的询问，因此这种模型的效率是比较低的。
 
-<div align="center"> <img src="../pics//1582217a-ed46-4cac-811e-90d13a65163b.png"/> </div><br>
+<div align="center"> <img src="../pics//1582217a-ed46-4cac-811e-90d13a65163b.png" width=""/> </div><br>
 
 ### 3. 异步-阻塞
 
 这是 I/O 复用使用的一种模式，通过使用 select，它可以监听多个 I/O 事件，当这些事件至少有一个发生时，用户程序会收到通知。
 
-<div align="center"> <img src="../pics//dbc5c9f1-c13c-4d06-86ba-7cc949eb4c8f.jpg"/> </div><br>
+<div align="center"> <img src="../pics//dbc5c9f1-c13c-4d06-86ba-7cc949eb4c8f.jpg" width=""/> </div><br>
 
 ### 4. 异步-非阻塞
 
-该模式下，I/O 操作会立即返回，之后可以处理其它操作，并且在 I/O 完成时会收到一个通知，此时会中断正在处理的操作，然后继续的操作。
+该模式下，I/O 操作会立即返回，之后可以处理其它操作，并且在 I/O 完成时会收到一个通知，此时会中断正在处理的操作，然后继续之前的操作。
 
-<div align="center"> <img src="../pics//b4b29aa9-dd2c-467b-b75f-ca6541cb25b5.jpg"/> </div><br>
+<div align="center"> <img src="../pics//b4b29aa9-dd2c-467b-b75f-ca6541cb25b5.jpg" width=""/> </div><br>
 
 ## select poll epoll
 
-这三个都是 I/O 多路复用的具体实现，select 出现的最早，之后是 poll，再是 epoll。可以说，新出现的实现是为了修复旧实现的不足。
+这三个都是 I/O 多路复用的具体实现，select 出现的最早，之后是 poll，再是 epoll。
 
 ### 1. select
 
@@ -1397,3 +1395,4 @@ poll 没有最大描述符数量的限制，如果平台支持应该采用 poll 
 - [poll vs select vs event-based](https://daniel.haxx.se/docs/poll-vs-select.html)
 - [Linux 之守护进程、僵死进程与孤儿进程](http://liubigbin.github.io/2016/03/11/Linux-%E4%B9%8B%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E3%80%81%E5%83%B5%E6%AD%BB%E8%BF%9B%E7%A8%8B%E4%B8%8E%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B/)
 - [Linux process states](https://idea.popcount.org/2012-12-11-linux-process-states/)
+- [GUID Partition Table](https://en.wikipedia.org/wiki/GUID_Partition_Table)
